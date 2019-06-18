@@ -6,32 +6,33 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      data: []
+      data: [],
+      value: '',
     }
   }
 
   handleClick = () => {
-    const p = prompt();
-    this.setState(({data}) => {
-      data.push(p)
-      return {data}
+    this.setState({
+      value: '',
+      data: [...this.state.data, this.state.value],
     })
   }
 
+  handleOnChange(value) {
+    this.setState({ value });
+  }
+
   render() {
-    const list = [...this.state.data]
-
-    if (list.length === 0) {
-      list.push(<i>Nothing added</i>)
-    }
-
     return (
       <div>
-        <ListGroup>
-          {list.map((item, i) =>
+        {this.state.data.length ? <ListGroup>
+          {this.state.data.map((item, i) =>
             <ListGroupItem key={i}>{item}</ListGroupItem>)
           }
-        </ListGroup>
+        </ListGroup> : <i>Nothing added</i>}
+        <input
+          value={this.state.value}
+          onChange={(e) => this.handleOnChange(e.target.value)} />
         <Button onClick={this.handleClick}>Add</Button>
       </div>
     )
