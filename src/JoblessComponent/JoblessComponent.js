@@ -1,19 +1,18 @@
 import React, {Component} from "react"
 
-import {Button, InputGroup, FormControl} from "react-bootstrap"
+import { InputGroup} from "react-bootstrap"
 
 export default class JobComponent extends Component {
   render() {
-    const { title } = this.props;
-
     return (
       <div>
-        <div>
+        <InputGroup className="mb-3">
           What is Your Current Status
           <select name="job" form="carform">
             <option value="select">Select</option>
           </select>
-        </div>
+          
+        </InputGroup>
       </div>
     )
   }
